@@ -16,4 +16,4 @@ run_itest : debug
 	echo "Integration tests..."
 	./$^
 
-include Makefile.hdrdep
+-include Makefile.hdrdep

@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Build artifacts
+*.o
+Makefile.hdrdep
+*.hdrdep.bak
+
+# Local binaries produced by task Makefiles
+/00.DummyMake/debug
+/00.DummyMake/release
+/00.DummyMake/utest
+/01.InplaceSorting/debug
+/01.InplaceSorting/release
+/01.InplaceSorting/utest
+/02.Base85/base85
+/02.Base85/debug
+/02.Base85/release
+/02.Base85/utest
