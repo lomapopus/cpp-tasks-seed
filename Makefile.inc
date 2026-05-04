@@ -1,8 +1,9 @@
 CXX = g++
-CXXFLAGS = -Werror -Wpedantic -Wall
+GTEST_PREFIX = /opt/homebrew/opt/googletest
+CXXFLAGS = -std=c++17 -Werror -Wpedantic -Wall -I$(GTEST_PREFIX)/include
 CXXFLAGS_R = $(CXXFLAGS) -O3 -DNDEBUG
 CXXFLAGS_D = $(CXXFLAGS) -g  -DDEBUG
-GTEST_LIBS = -lgtest -lgtest_main -lpthread
+GTEST_LIBS = -L$(GTEST_PREFIX)/lib -lgtest -lgtest_main -lpthread
 LD=$(CXX)
 
 %.d.o : %.cpp
