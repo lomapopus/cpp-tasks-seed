@@ -1,0 +1,6 @@
+
+# DO NOT DELETE
+
+base85.o: base85ed.h
+base85ed.o: base85ed.h
+base85ed_test.o: base85ed.h
