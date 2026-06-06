@@ -1,8 +1,12 @@
 CXX = g++
-CXXFLAGS = -Werror -Wpedantic -Wall $(CXX_EXTRA_FLAGS)
+CXXFLAGS = -std=c++17 -Werror -Wpedantic -Wall $(CXX_EXTRA_FLAGS)
 CXXFLAGS_R = $(CXXFLAGS) -O3 -DNDEBUG
 CXXFLAGS_D = $(CXXFLAGS) -g  -DDEBUG
+CXX_EXTRA_FLAGS += $(shell pkg-config --cflags gtest 2>/dev/null)
+GTEST_LIBS = $(shell pkg-config --libs gtest_main 2>/dev/null)
+ifeq ($(strip $(GTEST_LIBS)),)
 GTEST_LIBS = -lgtest -lgtest_main -lpthread
+endif
 LD=$(CXX)
 
 
