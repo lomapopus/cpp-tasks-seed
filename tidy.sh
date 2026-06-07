@@ -11,10 +11,13 @@ fi
 
 set -eo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$SCRIPT_DIR"
+
 ROOT_INCLUDE_FLAGS=(
   --extra-arg-before=-std=c++17
-  --extra-arg-before="-I${PWD}/external/eigen"
-  --extra-arg-before="-I${PWD}/external/lazycsv/include"
+  --extra-arg-before="-I${REPO_ROOT}/external/eigen"
+  --extra-arg-before="-I${REPO_ROOT}/external/lazycsv/include"
 )
 
 for f in $FILES; do
