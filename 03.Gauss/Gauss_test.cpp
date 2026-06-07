@@ -23,8 +23,8 @@ TEST(GaussSolve, SmallSolve)
 {
     GaussMatrix ab(3, 4);
     ab << 2.0, 1.0, -1.0, 8.0,
-          -3.0, -1.0, 2.0, -11.0,
-          -2.0, 1.0, 2.0, -3.0;
+    -3.0, -1.0, 2.0, -11.0,
+    -2.0, 1.0, 2.0, -3.0;
 
     const GaussVector expected((GaussVector(3) << 2.0, 3.0, -1.0).finished());
     const GaussVector actual = Gauss_solve(ab);
@@ -74,7 +74,7 @@ TEST(GaussSolve, SingularMatrixThrows)
 {
     GaussMatrix ab(2, 3);
     ab << 1.0, 2.0, 3.0,
-          2.0, 4.0, 6.0;
+    2.0, 4.0, 6.0;
 
     EXPECT_THROW(Gauss_solve(ab), std::runtime_error);
 }
