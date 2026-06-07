@@ -1,18 +1,20 @@
-CXX_EXTRA_FLAGS=-I ../external/lazycsv/include -I ../external/eigen $(shell pkgconf --cflags openblas)
-LD_EXTRA_OPT=$(pkgconf --libs openblas)
+CXX_EXTRA_FLAGS=-std=c++17 -I ../external/lazycsv/include -I ../external/eigen $(shell pkgconf --cflags gtest 2>/dev/null)
+LD_EXTRA_OPT=$(shell pkgconf --libs openblas 2>/dev/null)
 
 include ../Makefile.inc
+
+GTEST_LIBS=$(shell pkgconf --libs gtest gtest_main 2>/dev/null)
 
 release : gauss
 
 gauss  : util.r.o Gauss_main.r.o Gauss_solve.r.o
-	$(LD) -fopenmp -o $@ $^ $(LD_EXTRA_OPT)
+	$(LD) -o $@ $^ $(LD_EXTRA_OPT)
 
 debug   : util.d.o Gauss_main.d.o Gauss_solve.d.o
-	$(LD) -fopenmp -o $@ $^ $(LD_EXTRA_OPT)
+	$(LD) -o $@ $^ $(LD_EXTRA_OPT)
 
 utest   : Gauss_test.d.o util.d.o Gauss_solve.d.o
-	$(LD) -fopenmp -o $@ $^ $(GTEST_LIBS)
+	$(LD) -o $@ $^ $(GTEST_LIBS)
 
 run_utest : utest
 	./$^

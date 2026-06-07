@@ -1,4 +1,7 @@
+#pragma once
+
 #include <Eigen/Dense>
+#include <ostream>
 
 typedef Eigen::VectorXd /* Eigen::Matrix<double, Eigen::Dynamic, 1> */ GaussVector;
 typedef Eigen::Matrix<double, -1, -1, Eigen::RowMajor> GaussMatrix;
