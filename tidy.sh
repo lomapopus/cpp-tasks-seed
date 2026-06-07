@@ -11,19 +11,23 @@ fi
 
 set -eo pipefail
 
+ROOT_INCLUDE_FLAGS=(
+  --extra-arg-before=-std=c++17
+  --extra-arg-before="-I${PWD}/external/eigen"
+  --extra-arg-before="-I${PWD}/external/lazycsv/include"
+)
+
 for f in $FILES; do
   echo "Running clang-tidy on $f"
   args=(
     -p .
     -checks="$CHECKS"
     "$f"
-    --extra-arg=-std=c++17 \
-    --extra-arg="-isystem${PWD}/../external/eigen" \
-    --extra-arg="-isystem${PWD}/../external/lazycsv/include" \
     --quiet
   )
+  args+=("${ROOT_INCLUDE_FLAGS[@]}")
   for flag in "${GTEST_CFLAGS[@]}"; do
-    args+=(--extra-arg="$flag")
+    args+=(--extra-arg-before="$flag")
   done
   clang-tidy "${args[@]}" 2>&1
 done

@@ -1,7 +1,0 @@
-
-# DO NOT DELETE
-
-Gauss_main.o: Gauss_solve.h util.h
-Gauss_solve.o: Gauss_solve.h util.h
-Gauss_test.o: Gauss_solve.h util.h
-util.o: util.h
