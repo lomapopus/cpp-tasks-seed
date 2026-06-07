@@ -76,12 +76,14 @@ GaussMatrix load_csv_to_matrix(const char *filename)
         throw std::runtime_error("CSV contains no numeric data");
     }
 
-    GaussMatrix matrix(rows.size(), static_cast<Eigen::Index>(width));
-    for (std::size_t i = 0; i < rows.size(); ++i)
+    const Eigen::Index row_count = static_cast<Eigen::Index>(rows.size());
+    const Eigen::Index col_count = static_cast<Eigen::Index>(width);
+    GaussMatrix matrix(row_count, col_count);
+    for (Eigen::Index i = 0; i < row_count; ++i)
     {
-        for (std::size_t j = 0; j < width; ++j)
+        for (Eigen::Index j = 0; j < col_count; ++j)
         {
-            matrix(static_cast<Eigen::Index>(i), static_cast<Eigen::Index>(j)) = rows[i][j];
+            matrix(i, j) = rows[static_cast<std::size_t>(i)][static_cast<std::size_t>(j)];
         }
     }
 
